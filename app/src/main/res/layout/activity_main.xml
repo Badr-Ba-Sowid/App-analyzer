@@ -54,13 +54,13 @@
             app:labelVisibilityMode="unlabeled"
             android:elevation="3dp"
             />
-<!--      bader-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
-
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"/>
 

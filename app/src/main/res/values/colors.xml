@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mine_shaft">#2d2d2d</color>
     <color name="silver">#BABABA</color>
+    <color name="java">#1AADD1</color>
+    <color name="tundora">#464646</color>
+
 </resources>

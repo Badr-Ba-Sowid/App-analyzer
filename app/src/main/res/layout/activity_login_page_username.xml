@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginPageUsername">
+
+
+    <ImageView
+        android:id="@+id/app_logo_image_view_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_app_logo_118x188"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/app_name_text_view_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_logo_image_view_login_page_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/appify"
+        android:textColor="@color/java"
+        android:textSize="28sp"
+        />
+    <EditText
+        android:id="@+id/username_edit_text_login_page_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_rectangle_tundora"
+        android:hint="@string/username"
+        android:layout_below="@+id/app_name_text_view_login_page_username"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:elevation="3dp"
+
+        />
+    <ImageButton
+        android:id="@+id/continue_image_button_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username_edit_text_login_page_username"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/circle_tundora_40dp"
+        android:elevation="3dp"
+        android:src="@drawable/ic_next_button_24x24"
+        android:padding="10dp"
+        />
+        <TextView
+            android:id="@+id/or_text_view_login_page_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/continue_image_button_login_page_username"
+            android:text="@string/or"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:textSize="25dp"
+            />
+    <Button
+        android:id="@+id/google_signing_button_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_rectangle_tundora"
+        android:layout_below="@id/or_text_view_login_page_username"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+
+        android:drawableStart="@drawable/ic_google_g_icon_32x32"
+        android:padding="10dp"
+        android:text="@string/continue_with_google"
+        android:drawablePadding="10dp"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        />
+
+    <LinearLayout
+        android:id="@+id/discover_linear_layout_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/google_signing_button_login_page_username">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discover"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" apps on the Playstore"
+            android:textColor="@color/silver"
+            android:textSize="25sp"
+            />
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/recive_linear_layout_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_below="@id/discover_linear_layout_login_page_username"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recieve"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" top recommendations"
+            android:textColor="@color/silver"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sign_up_button_login_page_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Sign up"
+        android:background="@drawable/round_rectangle_tundora_white_border"
+        android:textSize="20sp"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        />
+
+
+</RelativeLayout>
+
+
+
