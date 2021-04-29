@@ -18,7 +18,7 @@ public class SignUpPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_button_13x23);
+        actionBar.setTitle("Sign up");
     }
 }

@@ -21,6 +21,12 @@
         <activity android:name=".SignUpPage"
             android:parentActivityName=".LoginPageUsername"/>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".LoginPagePassword"
+            android:parentActivityName=".LoginPageUsername"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -11,9 +11,9 @@
         android:id="@+id/app_logo_image_view_login_page_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_app_logo_118x188"
+        android:src="@drawable/ic_app_logo_100x100"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/app_name_text_view_login_page_username"
@@ -23,8 +23,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="@string/appify"
+        android:shadowRadius="3"
+        android:shadowColor="@color/java"
+        android:fontFamily="@font/roboto_thin"
         android:textColor="@color/java"
-        android:textSize="28sp"
+        android:textSize="23sp"
         />
     <EditText
         android:id="@+id/username_edit_text_login_page_username"
@@ -33,9 +36,12 @@
         android:background="@drawable/round_rectangle_tundora"
         android:hint="@string/username"
         android:layout_below="@+id/app_name_text_view_login_page_username"
-        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+
         android:padding="15dp"
-        android:elevation="3dp"
 
         />
     <ImageButton
@@ -46,10 +52,13 @@
         android:layout_marginStart="20dp"
         android:background="@drawable/circle_tundora_40dp"
         android:elevation="3dp"
-        android:src="@drawable/ic_next_button_24x24"
-        android:padding="10dp"
+        android:src="@drawable/ic_next_button_silver_20x20"
+        android:padding="15dp"
+        android:clickable="false"
         />
-        <TextView
+
+
+    <TextView
             android:id="@+id/or_text_view_login_page_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +76,7 @@
         android:layout_below="@id/or_text_view_login_page_username"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-
+        android:textColor="@color/silver"
         android:drawableStart="@drawable/ic_google_g_icon_32x32"
         android:padding="10dp"
         android:text="@string/continue_with_google"
@@ -76,43 +85,19 @@
         android:textSize="18sp"
         />
 
-    <LinearLayout
-        android:id="@+id/discover_linear_layout_login_page_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/google_signing_button_login_page_username">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Discover"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" apps on the Playstore"
-            android:textColor="@color/silver"
-            android:textSize="25sp"
-            />
-</LinearLayout>
+
     <LinearLayout
         android:id="@+id/recive_linear_layout_login_page_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_below="@id/discover_linear_layout_login_page_username"
+        android:layout_above="@id/sign_up_button_login_page_username"
         android:layout_marginBottom="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp">
-
+        android:layout_centerHorizontal="true">
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recieve"
-            android:textSize="25sp"
+            android:text="Get"
+            android:textSize="20sp"
             android:textColor="@color/white"
             />
         <TextView
@@ -120,7 +105,8 @@ android:layout_below="@id/discover_linear_layout_login_page_username"
             android:layout_height="wrap_content"
             android:text=" top recommendations"
             android:textColor="@color/silver"
-            android:textSize="25sp"
+            android:textSize="20sp"
+            android:visibility="gone"
             />
     </LinearLayout>
 
@@ -131,13 +117,13 @@ android:layout_below="@id/discover_linear_layout_login_page_username"
         android:textAllCaps="false"
         android:text="Sign up"
         android:background="@drawable/round_rectangle_tundora_white_border"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="7dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
