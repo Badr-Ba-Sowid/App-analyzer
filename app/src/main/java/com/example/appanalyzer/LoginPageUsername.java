@@ -3,11 +3,7 @@ package com.example.appanalyzer;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 public class LoginPageUsername extends AppCompatActivity {
     private Button signUpButton;
@@ -36,7 +31,7 @@ public class LoginPageUsername extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //navigate to the signup page
-                startActivity(new Intent(getApplicationContext() , SignUpPage.class));
+                startActivity(new Intent(getApplicationContext() , SignUpUserName.class));
             }
         });
         usernameEditText.addTextChangedListener(new TextWatcher() {

@@ -18,11 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpPage"
+        <activity android:name=".SignUpUserName"
             android:parentActivityName=".LoginPageUsername"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".LoginPagePassword"
             android:parentActivityName=".LoginPageUsername"/>
+        <activity android:name=".SignUpPassword"
+            android:parentActivityName=".SignUpUserName"/>
 
         <meta-data
             android:name="preloaded_fonts"
