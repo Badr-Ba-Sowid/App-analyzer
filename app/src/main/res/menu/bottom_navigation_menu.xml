@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/settings_menu_item"
+        android:title="@null"
+        android:icon="@drawable/ic_settings_icon_grey_25x25"/>
+    <item android:id="@+id/home_menu_item"
+        android:title="@null"
+        android:icon="@drawable/ic_home_icon_grey_25x27"/>
+    <item android:id="@+id/search_menu_item"
+        android:title="@null"
+        android:icon="@drawable/ic_search_icon_grey_25x25"/>
+    <item android:id="@+id/app_analyzer_menu_item"
+        android:title="@null"
+        android:icon="@drawable/ic_app_analyzer_icon_grey_31x22"/>
+</menu>
