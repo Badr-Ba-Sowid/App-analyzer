@@ -12,14 +12,15 @@
         <activity
             android:name=".LoginPageUsername"
             android:label="@string/title_activity_login_page_username"
-            android:theme="@style/Theme.AppAnalyzer.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+            android:theme="@style/Theme.AppAnalyzer.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignUpPage"
+            android:parentActivityName=".LoginPageUsername"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
