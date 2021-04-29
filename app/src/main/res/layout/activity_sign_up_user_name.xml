@@ -47,12 +47,14 @@
 
         android:padding="15dp"/>
     <ImageButton
+        android:id="@+id/continue_image_button_sign_up_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle_tundora_40dp"
         android:layout_below="@id/email_edit_text_sign_up_page"
         android:layout_margin="20dp"
-        android:src="@drawable/ic_next_button_white_20x20"
+        android:src="@drawable/ic_next_button_silver_20x20"
+        android:clickable="false"
         android:padding="10dp"
         android:elevation="3dp"
         />
