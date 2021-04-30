@@ -1,22 +1,42 @@
 package com.example.appanalyzer;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class SignUpPassword extends AppCompatActivity {
     private EditText passwordEditText;
     private EditText repeatPasswordEditText;
     private Button signUpButton;
     private Toolbar toolbar;
+    String username, email;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -26,11 +46,16 @@ public class SignUpPassword extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_edit_text_sign_up_password);
         repeatPasswordEditText = findViewById(R.id.repeat_password_edit_text_sign_up_page);
         toolbar = findViewById(R.id.toolbar_sign_up_password);
+        signUpButton = findViewById(R.id.sign_up_button_sign_in_page);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_button_13x23);
         actionBar.setTitle("Sign up");
+
+        email = getIntent().getStringExtra("EMAIL");
+        username = getIntent().getStringExtra("USERNAME");
+
 
         repeatPasswordEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,7 +85,63 @@ public class SignUpPassword extends AppCompatActivity {
             }
         });
 
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUp();
+            }
+        });
+
     }
+
+    private void signUp() {
+        String password = passwordEditText.getText().toString().trim();
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                HashMap<String, Object> userDetails = new HashMap<>();
+                userDetails.put("email", email);
+                userDetails.put("username", username);
+                userDetails.put("ID", auth.getCurrentUser().getUid());
+
+                FirebaseFirestore usersDatabase = FirebaseFirestore.getInstance();
+                usersDatabase.collection("Users").document(auth.getCurrentUser().getUid())
+                        .set(userDetails)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                sendEmailVerification();
+                                Intent intent = new Intent(SignUpPassword.this, LoginPagePassword.class);
+                                intent.putExtra("EMAIL", email);
+                                startActivity(intent);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(SignUpPassword.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+            }
+        });
+    }
+
+        private void sendEmailVerification(){
+            final FirebaseUser user = auth.getCurrentUser();
+            user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Registered Successfully. Verification email sent to " + user.getEmail(), Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Failed to send verification email", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+        }
 
     private boolean passwordIsValid(String password) {
         // for checking if password length

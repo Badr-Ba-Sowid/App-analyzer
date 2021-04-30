@@ -1,8 +1,10 @@
 package com.example.appanalyzer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -37,7 +39,7 @@ public class SignUpUserName extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String email = charSequence.toString().trim();
-                if(!email.isEmpty() && !emailEditText.getText().toString().isEmpty()){
+                if(!email.isEmpty() && !emailEditText.getText().toString().trim().isEmpty()){
                     if(emailIsValid(email)){
                         continueImageButton.setClickable(true);
                         continueImageButton.setImageDrawable(getDrawable(R.drawable.ic_next_button_white_20x20));
@@ -53,6 +55,16 @@ public class SignUpUserName extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        continueImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignUpPassword.class);
+                intent.putExtra("EMAIL", emailEditText.getText().toString().trim());
+                intent.putExtra("USERNAME", usernameEditText.getText().toString().trim());
+                startActivity(intent);
             }
         });
     }

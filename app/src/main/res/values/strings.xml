@@ -11,6 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="appify">Appify</string>
     <string name="username">Username</string>
+    <string name="email">Email</string>
     <string name="or">OR</string>
     <string name="continue_with_google">Continue with google</string>
 </resources>

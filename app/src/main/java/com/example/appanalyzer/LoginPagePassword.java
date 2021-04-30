@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginPagePassword extends AppCompatActivity {
-    private TextView userNameTextView;
+    private TextView userEmailTextView;
     private Toolbar toolbar;
     private TextInputEditText passwordEditText;
     private Button loginButton;
@@ -37,15 +37,15 @@ public class LoginPagePassword extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page_password);
-        userNameTextView = findViewById(R.id.username_text_view_login_page_password);
+        userEmailTextView = findViewById(R.id.username_text_view_login_page_password);
         toolbar = findViewById(R.id.toolbar_login_page_password);
         passwordEditText = findViewById(R.id.password_text_input_edit_text_login_page_password);
         loginButton = findViewById(R.id.login_button_login_page_password);
 
         // get the name from the intent and set
         // the text view with user's username
-        String username = getIntent().getStringExtra("USERNAME");
-        userNameTextView.setText(username);
+        String username = getIntent().getStringExtra("EMAIL");
+        userEmailTextView.setText(username);
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -86,8 +86,8 @@ public class LoginPagePassword extends AppCompatActivity {
 
     private void loginUser() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        final String username = userNameTextView.getText().toString();
-        String password = passwordEditText.getText().toString();
+        final String username = userEmailTextView.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
 
         auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -97,19 +97,18 @@ public class LoginPagePassword extends AppCompatActivity {
                         String userEmail = auth.getCurrentUser().getEmail();
                         Intent intent = new Intent(LoginPagePassword.this, MainActivity.class);
                         intent.putExtra("EMAIL", userEmail);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                     if (!(auth.getCurrentUser().isEmailVerified())) {
-                        Toast.makeText(LoginPagePassword.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPagePassword.this, "Please verify your email address", Toast.LENGTH_LONG).show();
                         final FirebaseUser user = auth.getCurrentUser();
                         user.sendEmailVerification().addOnCompleteListener(LoginPagePassword.this, new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(LoginPagePassword.this, "A new verification email has been sent. Please verify your email" + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginPagePassword.this, "A new verification email has been sent. Please verify your email" + user.getEmail(), Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(LoginPagePassword.this, "Failed to send verification email", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginPagePassword.this, "Failed to send verification email", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -121,15 +120,15 @@ public class LoginPagePassword extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(LoginPagePassword.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPagePassword.this, "Invalid password", Toast.LENGTH_LONG).show();
                 } else if (e instanceof FirebaseAuthInvalidUserException) {
                     String errorCode = ((FirebaseAuthInvalidUserException) e).getErrorCode();
                     if (errorCode.equals("ERROR_USER_NOT_FOUND")) {
                         Toast.makeText(LoginPagePassword.this, "This email does not belong to a registered account. Please proceed to Sign Up.", Toast.LENGTH_SHORT).show();
                     } else if (errorCode.equals("ERROR_USER_DISABLED")) {
-                        Toast.makeText(LoginPagePassword.this, "User account has been disabled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPagePassword.this, "User account has been disabled", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(LoginPagePassword.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPagePassword.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }
 
                 }
