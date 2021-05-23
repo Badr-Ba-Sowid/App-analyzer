@@ -48,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:background="@color/mine_shaft"
+            android:background="@color/mine_shaft"
             app:menu="@menu/bottom_navigation_menu"
             app:itemIconTint="@color/silver"
             app:labelVisibilityMode="unlabeled"
@@ -63,8 +63,6 @@
         android:layout_gravity="start"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"/>
-
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

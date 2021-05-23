@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_app_search_results"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="3dp"
+    android:background="@drawable/rectangle_background"
+    android:layout_marginTop="0.2dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/app_icon_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/rectangle_tundora_white_border"
+        android:elevation="3dp"
+        android:minHeight="70dp"
+        android:minWidth="70dp"
+        android:padding="15dp"
+        />
+
+    <TextView
+        android:id="@+id/app_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="App name"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/app_icon_view"
+        android:lines="1"/>
+
+    <TextView
+        android:id="@+id/text_play_store_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:text="Play Store rating"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/app_name_view"
+        android:layout_toRightOf="@id/app_icon_view"
+        android:lines="1"/>
+
+    <RatingBar
+        android:id="@+id/app_rating_stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/customRatingBar"
+        android:layout_below="@id/text_play_store_rating"
+        android:layout_toRightOf="@id/app_icon_view"
+        android:numStars="5"
+        android:rating="2.5" />
+
+    <TextView
+        android:id="@+id/rating_play_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="5.0"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@id/app_rating_stars"
+        android:layout_below="@id/text_play_store_rating"
+        />
+
+    <TextView
+        android:id="@+id/app_description_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="Description"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/app_icon_view"
+        android:layout_below="@+id/app_rating_stars"
+        />
+
+    <ImageButton
+        android:id="@+id/app_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_options"
+        />
+
+
+    <ImageButton
+        android:id="@+id/share_app_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_description_view"
+        android:layout_toRightOf="@id/app_icon_view"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_share"
+        />
+
+    <CheckBox
+        android:id="@+id/favorite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_description_view"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/share_app_button"
+        android:background="@drawable/ic_favorite_border"
+        android:button="@android:color/transparent" />
+
+    <ImageButton
+        android:id="@+id/play_store_app_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_description_view"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_play_store"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

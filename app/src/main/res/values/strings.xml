@@ -14,4 +14,10 @@
     <string name="email">Email</string>
     <string name="or">OR</string>
     <string name="continue_with_google">Continue with google</string>
+    <string name="top_search_categories">Top Search Categories</string>
+    <string name="search">Search</string>
+    <string name="help_specific_search">Help us understand what you need by answering some questions</string>
+    <string name="category_question">Which category are you looking to search for?</string>
+    <string name="price_range">Select a price range for your application</string>
+    <string name="search_results">Search results</string>
 </resources>

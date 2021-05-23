@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".SpecificSearch">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/mine_shaft"
+            android:elevation="3dp"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/search_back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_arrow_back_button_13x23" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_appify_logo_30x42" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/question_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_tool_bar"
+            android:text="@string/help_specific_search"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/rectangle_tundora_white_border"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="3dp"
+            app:drawableStartCompat="@drawable/ic_help_outline" />
+
+
+        <TextView
+            android:id="@+id/question_category_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/question_search"
+            android:text="@string/category_question"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/category_filter_fitness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/question_category_search"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_rectangle_tundora"
+            android:clickable="false"
+            android:elevation="3dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="10dp"
+            android:text="fitness"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+<!--        <Button-->
+<!--            android:id="@+id/category_filter_cooking"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/question_category_search"-->
+<!--            android:layout_alignEnd="@+id/category_filter_fitness"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="-100dp"-->
+<!--            android:background="@drawable/round_rectangle_tundora"-->
+<!--            android:clickable="false"-->
+<!--            android:elevation="3dp"-->
+<!--            android:minWidth="0dp"-->
+<!--            android:minHeight="0dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="cooking"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="17sp" />-->
+
+        <TextView
+            android:id="@+id/selected_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category_filter_fitness"
+            android:text=" Selected"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/question_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/selected_category"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_rectangle_tundora"
+            android:clickable="false"
+            android:elevation="3dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="10dp"
+            android:layout_centerInParent="true"
+            android:text="@string/price_range"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+<!--        <com.google.android.material.slider.RangeSlider-->
+<!--            android:id="@+id/app_price_limit"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/question_price"-->
+<!--            android:background="@color/mine_shaft"-->
+<!--            android:valueFrom="0"-->
+<!--            android:valueTo="100"-->
+<!--            app:values="@array/price_slider_values"-->
+<!--            android:stepSize="10"-->
+<!--            />-->
+
+
+        <ImageButton
+            android:id="@+id/continue_image_button_sign_up_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_tundora_40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_next_button_silver_20x20"
+            android:clickable="false"
+            android:padding="10dp"
+            android:elevation="3dp"
+            />
+
+</RelativeLayout>
