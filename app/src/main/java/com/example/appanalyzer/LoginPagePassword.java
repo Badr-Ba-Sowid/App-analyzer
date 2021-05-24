@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -66,7 +67,7 @@ public class LoginPagePassword extends AppCompatActivity {
                     loginButton.setClickable(true);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         loginButton.setTextColor(getApplication().getColor(R.color.white));
-                        loginUser();
+
                     }
                 } else {
                     loginButton.setClickable(false);
@@ -80,6 +81,12 @@ public class LoginPagePassword extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginUser();
             }
         });
     }

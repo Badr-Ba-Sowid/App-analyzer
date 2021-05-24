@@ -6,6 +6,8 @@ public class AppModel {
         private String name, description;
         private int rating;
         private List<String> apps;
+        private String icon;
+
 
         public AppModel() {
 
