@@ -25,7 +25,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     private List<AppModel> appsList;
     private Context context;
 
-    public SearchResultAdapter (List<AppModel> appsList, Context context,String userId, Boolean isFromfav) {
+    public SearchResultAdapter (List<AppModel> appsList, Context context) {
         this.appsList = appsList;
         this.context = context;
 
@@ -41,6 +41,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position) {
+        holder.appName.setText(appsList.get(position).getName());
+
         //set app description
         holder.appDescription.setText(appsList.get(position).getDescription());
 
