@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -35,9 +36,9 @@ public class SignUpPassword extends AppCompatActivity {
     private EditText repeatPasswordEditText;
     private Button signUpButton;
     private Toolbar toolbar;
-    String username, email;
+    private String username, email;
+    private CustomProgressBar signInProgressBar;
     FirebaseAuth auth = FirebaseAuth.getInstance();
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,31 +53,39 @@ public class SignUpPassword extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_button_13x23);
         actionBar.setTitle("Sign up");
-
         email = getIntent().getStringExtra("EMAIL");
         username = getIntent().getStringExtra("USERNAME");
-
-
         repeatPasswordEditText.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // if the passwords match  and the password
                 // is valid  set the sign up
                 // button to be clickable
                 String password = charSequence.toString().trim();
                 if(!password.isEmpty() && passwordEditText.getText().toString().trim().equals(password)){
                     if(passwordIsValid(password)){
-                        signUpButton.setClickable(true);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             signUpButton.setTextColor(getColor(R.color.white));
                         }
+                        signUpButton.setClickable(true);
+                    }else{
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            signUpButton.setTextColor(getColor(R.color.silver));
+                        }
+                        signUpButton.setClickable(false);
                     }
+                }else{
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        signUpButton.setTextColor(getColor(R.color.silver));
+                    }
+                    signUpButton.setClickable(false);
                 }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -95,6 +104,10 @@ public class SignUpPassword extends AppCompatActivity {
     }
 
     private void signUp() {
+        //show the progress bar
+        signInProgressBar = new CustomProgressBar(SignUpPassword.this,"Creating your account..."  , R.raw.creating_your_account);
+        signInProgressBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        signInProgressBar.show();
         String password = passwordEditText.getText().toString().trim();
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
@@ -103,7 +116,6 @@ public class SignUpPassword extends AppCompatActivity {
                 userDetails.put("email", email);
                 userDetails.put("username", username);
                 userDetails.put("ID", auth.getCurrentUser().getUid());
-
                 FirebaseFirestore usersDatabase = FirebaseFirestore.getInstance();
                 usersDatabase.collection("Users").document(auth.getCurrentUser().getUid())
                         .set(userDetails)
@@ -113,16 +125,25 @@ public class SignUpPassword extends AppCompatActivity {
                                 sendEmailVerification();
                                 Intent intent = new Intent(SignUpPassword.this, LoginPagePassword.class);
                                 intent.putExtra("EMAIL", email);
+                                signInProgressBar.dismiss();
                                 startActivity(intent);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
+                                //TODO handle error
+                                signInProgressBar.dismiss();
                                 Toast.makeText(SignUpPassword.this, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
 
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //TODO handle error
+                signInProgressBar.dismiss();
             }
         });
     }
@@ -146,10 +167,9 @@ public class SignUpPassword extends AppCompatActivity {
     private boolean passwordIsValid(String password) {
         // for checking if password length
         // is more than 8 characters
-        if (password.length() <= 8) {
+        if (password.length() < 8) {
             return false;
         }
-
         // to check space
         if (password.contains(" ")) {
             return false;

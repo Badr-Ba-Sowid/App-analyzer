@@ -29,9 +29,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.android.volley.*;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.gson.JsonObject;
 
@@ -51,6 +54,7 @@ public class Search extends Fragment {
     SearchView searchView;
     Toolbar toolbar;
     private RequestQueue mRequestQueue;
+
 
     private RecyclerView recyclerView;
     private SearchResultAdapter searchAdapter;
@@ -117,70 +121,79 @@ public class Search extends Fragment {
 
         String url = "https://asia-southeast2-app-analyzer-cd47b.cloudfunctions.net/recommend_apps";
         //TODO add progress dialog
-        HashMap<String, String> params = new HashMap<>();
-        params.put("query", query);
+//        HashMap<String, String> params = new HashMap<>();
+//        params.put("query", query);
 
-        JsonArrayRequest jsonArrayRequest;
-
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST,
                 url,
-               null,
-                new Response.Listener<JSONArray>(){
-
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        //Toast.makeText(getActivity()  , "Check 1"  , Toast.LENGTH_SHORT).show();
-                        for (int i = 0; i < response.length(); i++) {
-                            JSONObject jsonObject;
-                            try {
+                    public void onResponse(String response) {
+                        Toast.makeText(getActivity() , response.toString(), Toast.LENGTH_LONG).show();
 
-                                jsonObject = response.getJSONObject(i);
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 AppModel apps = new AppModel();
-                                apps.setName(jsonObject.getString("appName"));
-                                apps.setRating(jsonObject.getInt("appRating"));
-                                apps.setDescription(jsonObject.getString("appDescription"));
+                                try {
+                                    apps.setName(jsonObject.getString("App Id"));
+                                    appsList.add(apps);
 
-                                appsList.add(apps);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                searchAdapter.notifyDataSetChanged();
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+
                             }
-                            searchAdapter.notifyDataSetChanged();
-
+                        }catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
                     }
-                },
-                new Response.ErrorListener(){
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                       // Toast.makeText(getActivity()  , "Check 2"  , Toast.LENGTH_SHORT).show();
-                         Toast.makeText(getActivity()  , error.getLocalizedMessage()  , Toast.LENGTH_SHORT).show();
-                    }
-                }){
+                }, new Response.ErrorListener() {
             @Override
-            public byte[] getBody() {
-                // TODO Clean code
-                JSONObject requestBody = new JSONObject();
-                try {
-                    query.replaceAll("NaN", String.valueOf(-1));
-                    requestBody.put("query", query);
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity() , error.toString() , Toast.LENGTH_SHORT).show();
+            }
 
+        })
+        {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    jsonBody.put("query", query);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                final String mRequestBody = requestBody.toString();
+                final String mRequestBody = jsonBody.toString();
                 try {
-                    return mRequestBody.getBytes("utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                    return null;
                 }
-
-                return new byte[0];
             }
-        };
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String responseString = "";
+                if (response != null) {
+                    responseString = String.valueOf(response.statusCode);
+                    // can get more details such as response.headers
+                }
+                return super.parseNetworkResponse(response);
+            }
+
+        }
+        ;
         // Access the RequestQueue through your singleton class.
         mRequestQueue.add(jsonArrayRequest);
 

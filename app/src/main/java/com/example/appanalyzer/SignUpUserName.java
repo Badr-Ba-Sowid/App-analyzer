@@ -71,6 +71,7 @@ public class SignUpUserName extends AppCompatActivity {
 
     public static boolean emailIsValid(String email)
     {
+        //Todo check for alternative
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
