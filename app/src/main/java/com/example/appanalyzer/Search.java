@@ -116,8 +116,8 @@ public class Search extends Fragment {
 
     void sendRequest(final String query) {
         appsList = new ArrayList<>();
-        searchAdapter = new SearchResultAdapter(appsList, getActivity());
-        recyclerView.setAdapter(searchAdapter);
+//        searchAdapter = new SearchResultAdapter(appsList, getActivity());
+//        recyclerView.setAdapter(searchAdapter);
 
         String url = "https://asia-southeast2-app-analyzer-cd47b.cloudfunctions.net/recommend_apps";
         //TODO add progress dialog
@@ -129,27 +129,30 @@ public class Search extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(getActivity() , response.toString(), Toast.LENGTH_LONG).show();
 
                         try {
+                            response = response.replaceAll("NaN", "-1" /*Or whatever you need*/);
+
                             JSONArray jsonArray = new JSONArray(response);
+
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 AppModel apps = new AppModel();
                                 try {
                                     apps.setName(jsonObject.getString("App Id"));
                                     appsList.add(apps);
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                searchAdapter.notifyDataSetChanged();
-
+//                                searchAdapter.notifyDataSetChanged();
 
                             }
+
                         }catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        Toast.makeText(getActivity() , Integer.toString(appsList.size()), Toast.LENGTH_LONG).show();
+
                     }
 
                 }, new Response.ErrorListener() {
@@ -192,8 +195,24 @@ public class Search extends Fragment {
                 return super.parseNetworkResponse(response);
             }
 
-        }
-        ;
+        };
+
+        jsonArrayRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
         // Access the RequestQueue through your singleton class.
         mRequestQueue.add(jsonArrayRequest);
 
