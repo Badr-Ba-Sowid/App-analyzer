@@ -5,21 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="3dp"
-    android:background="@drawable/rectangle_background"
+    android:background="@drawable/rectangle_mine_shaft"
     android:layout_marginTop="0.2dp"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/app_icon_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/rectangle_tundora_white_border"
         android:elevation="3dp"
-        android:minHeight="70dp"
-        android:minWidth="70dp"
         android:padding="15dp"
         />
 
@@ -29,11 +26,12 @@
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:text="App name"
-        android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/app_icon_view"
+        android:layout_marginEnd="10dp"
+        android:layout_toLeftOf="@id/app_options"
         android:lines="1"/>
 
     <TextView
@@ -42,7 +40,6 @@
         android:layout_height="wrap_content"
         android:textSize="10dp"
         android:text="Play Store rating"
-        android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="2dp"
@@ -54,36 +51,38 @@
         android:id="@+id/app_rating_stars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/customRatingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_below="@id/text_play_store_rating"
         android:layout_toRightOf="@id/app_icon_view"
+        android:progressTint="@color/gold"
+        android:progressBackgroundTint="@color/gold"
+        android:secondaryProgressTint="@color/gold"
         android:numStars="5"
-        android:stepSize="1.0"
-        android:rating="2.5" />
+        android:stepSize="0.1"
+        android:rating="2.4" />
 
     <TextView
         android:id="@+id/rating_play_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
         android:text="5.0"
+        android:textSize="12sp"
+
         android:layout_marginLeft="5dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/silver"
         android:layout_toRightOf="@id/app_rating_stars"
-        android:layout_below="@id/text_play_store_rating"
-        />
+        android:layout_alignBottom="@id/app_rating_stars"        />
 
     <TextView
         android:id="@+id/app_description_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:text="Description"
-        android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:lines="3"
         android:layout_toRightOf="@id/app_icon_view"
         android:layout_below="@+id/app_rating_stars"
         />
@@ -108,7 +107,7 @@
         android:layout_toRightOf="@id/app_icon_view"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_share"
+        android:src="@drawable/ic_icon_share"
         />
 
     <ImageButton
@@ -119,19 +118,30 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/share_app_button"
-        android:background="@drawable/ic_favorite_border"
+        android:background="@drawable/ic_icon_heart"
         android:button="@android:color/transparent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/play_store_app_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/app_description_view"
         android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_play_store"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+
+        android:background="@drawable/round_rectangle_tundora"
+        android:text="open in playstore"
+        android:textAllCaps="false"
+        android:drawablePadding="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:drawableStart="@drawable/ic_play_store"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+
         />
 
 </RelativeLayout>

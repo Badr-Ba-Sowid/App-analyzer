@@ -7,21 +7,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
+import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Set;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder> {
     private List<AppModel> appsList;
@@ -49,15 +47,18 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.appDescription.setText(appsList.get(position).getDescription());
 
         // set the rating
-        holder.appRating.setText(String.valueOf(appsList.get(position).getRating()));
+        DecimalFormat df2 = new DecimalFormat("#.##");
+        holder.appRating.setText(String.valueOf(df2.format(appsList.get(position).getRating())));
 
 
-        Float appRating = Float.valueOf(appsList.get(position).getRating());
-        holder.starRatings.setRating(appRating);
+         Float appRating = (float) (appsList.get(position).getRating());
+         holder.starRatings.setRating(appRating);
 
             String iconURL = appsList.get(position).getIconURL();
-            Glide.with(context)
+
+            Picasso.get()
                     .load(iconURL)
+                    .transform(new RoundedCornersTransformation(50, 0))
                     .into(holder.appIconPicture);
             holder.appIconPicture.setPadding(3,3,3,3);
 
@@ -74,7 +75,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     ImageView appIconPicture;
     TextView appName, appDescription, appRating;
     RelativeLayout layoutCard;
-    ImageButton shareButton, favouriteButton, optionsButton, PlayStoreButton;
+    ImageButton shareButton, favouriteButton, optionsButton;
+    Button PlayStoreButton;
     RatingBar starRatings;
 
 

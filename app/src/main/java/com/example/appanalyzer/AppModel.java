@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AppModel {
         private String name, description;
-        private int rating;
+        private double rating;
         private List<String> apps;
         private String iconURL;
 
@@ -35,11 +35,11 @@ public class AppModel {
             this.description = description;
         }
 
-        public int getRating() {
+        public double getRating() {
             return rating;
         }
 
-        public void setRating(int rating) { this.rating = rating; }
+        public void setRating(double rating) { this.rating = rating; }
 
         public List<String> getApps() { return apps; }
 

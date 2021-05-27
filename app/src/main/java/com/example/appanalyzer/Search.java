@@ -38,7 +38,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.*;
-import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.gson.JsonObject;
 
@@ -150,15 +149,9 @@ public class Search extends Fragment {
                                 try {
                                     apps.setName(jsonObject.getString("title"));
                                     apps.setDescription(jsonObject.getString("summary"));
-                                    apps.setRating(jsonObject.getInt("score"));
-                                    jsonObject.getString("icon");
+                                    apps.setRating(jsonObject.getDouble("score"));
+                                    apps.setIconURL(jsonObject.getString("icon"));
 
-                                   iconURL = jsonObject.getString("icon");
-
-//                                        Glide.with(getActivity().getApplicationContext())
-//                                                .load(iconURL)
-//                                                .into(imageView);
-//                                        imageView.setPadding(3, 3, 3, 3);
 
                                     appsList.add(apps);
                                 } catch (JSONException e) {
