@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,14 +42,25 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SearchResultViewHolder holder, final int position) {
         holder.appName.setText(appsList.get(position).getName());
 
         //set app description
         holder.appDescription.setText(appsList.get(position).getDescription());
 
         // set the rating
-        holder.appRating.setText(appsList.get(position).getRating());
+        holder.appRating.setText(String.valueOf(appsList.get(position).getRating()));
+
+
+        Float appRating = Float.valueOf(appsList.get(position).getRating());
+        holder.starRatings.setRating(appRating);
+
+            String iconURL = appsList.get(position).getIconURL();
+            Glide.with(context)
+                    .load(iconURL)
+                    .into(holder.appIconPicture);
+            holder.appIconPicture.setPadding(3,3,3,3);
+
 
     }
 
@@ -62,6 +75,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     TextView appName, appDescription, appRating;
     RelativeLayout layoutCard;
     ImageButton shareButton, favouriteButton, optionsButton, PlayStoreButton;
+    RatingBar starRatings;
 
 
     public SearchResultViewHolder(@NonNull View itemView) {
@@ -76,6 +90,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         favouriteButton = itemView.findViewById(R.id.favorite_button);
         optionsButton = itemView.findViewById(R.id.app_options);
         PlayStoreButton = itemView.findViewById(R.id.play_store_app_button);
+        starRatings = itemView.findViewById(R.id.app_rating_stars);
+
 
     }
 }

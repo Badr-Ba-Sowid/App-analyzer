@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +21,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.airbnb.lottie.L;
@@ -35,6 +38,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.*;
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.gson.JsonObject;
 
@@ -53,8 +57,11 @@ public class Search extends Fragment {
     RadioGroup categoriesRadioGroup;
     SearchView searchView;
     Toolbar toolbar;
+
     private RequestQueue mRequestQueue;
 
+    private String iconURL;
+    private ImageView imageView;
 
     private RecyclerView recyclerView;
     private SearchResultAdapter searchAdapter;
@@ -71,6 +78,8 @@ public class Search extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+
+        imageView = v.findViewById(R.id.app_icon_view);
         recyclerView = v.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
@@ -116,8 +125,8 @@ public class Search extends Fragment {
 
     void sendRequest(final String query) {
         appsList = new ArrayList<>();
-//        searchAdapter = new SearchResultAdapter(appsList, getActivity());
-//        recyclerView.setAdapter(searchAdapter);
+        searchAdapter = new SearchResultAdapter(appsList, getActivity());
+        recyclerView.setAdapter(searchAdapter);
 
         String url = "https://asia-southeast2-app-analyzer-cd47b.cloudfunctions.net/recommend_apps";
         //TODO add progress dialog
@@ -139,19 +148,30 @@ public class Search extends Fragment {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 AppModel apps = new AppModel();
                                 try {
-                                    apps.setName(jsonObject.getString("App Id"));
+                                    apps.setName(jsonObject.getString("title"));
+                                    apps.setDescription(jsonObject.getString("summary"));
+                                    apps.setRating(jsonObject.getInt("score"));
+                                    jsonObject.getString("icon");
+
+                                   iconURL = jsonObject.getString("icon");
+
+//                                        Glide.with(getActivity().getApplicationContext())
+//                                                .load(iconURL)
+//                                                .into(imageView);
+//                                        imageView.setPadding(3, 3, 3, 3);
+
                                     appsList.add(apps);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-//                                searchAdapter.notifyDataSetChanged();
+                                searchAdapter.notifyDataSetChanged();
 
                             }
 
                         }catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(getActivity() , Integer.toString(appsList.size()), Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(getActivity() , Integer.toString(appsList.size()), Toast.LENGTH_LONG).show();
 
                     }
 
