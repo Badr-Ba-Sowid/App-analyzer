@@ -13,29 +13,23 @@
         android:src="@drawable/ic_app_logo_100x100"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>
+    <RelativeLayout
+        android:id="@+id/afterAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_logo_image_view_login_page_username"
+        android:visibility="gone"
+        android:animateLayoutChanges="true"
 
-    <TextView
-        android:id="@+id/app_name_text_view_login_page_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/app_logo_image_view_login_page_username"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:text="@string/appify"
-        android:shadowRadius="3"
-        android:shadowColor="@color/java"
-        android:fontFamily="@font/roboto_thin"
-        android:textColor="@color/java"
-        android:textSize="23sp"
-        />
+        >
+
     <EditText
         android:id="@+id/email_edit_text_login_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_rectangle_tundora"
         android:hint="@string/email"
-        android:layout_below="@+id/app_name_text_view_login_page_username"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -51,7 +45,7 @@
         android:layout_marginStart="20dp"
         android:background="@drawable/circle_tundora_40dp"
         android:elevation="3dp"
-        android:src="@drawable/ic_next_button_silver_20x20"
+        android:src="@drawable/ic_next_button_mine_shaft_20x20"
         android:padding="15dp"
         android:clickable="false"
         />
@@ -127,6 +121,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         />
+    </RelativeLayout>
 
 
 </RelativeLayout>

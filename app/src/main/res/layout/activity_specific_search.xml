@@ -154,7 +154,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="20dp"
-            android:src="@drawable/ic_next_button_silver_20x20"
+            android:src="@drawable/ic_next_button_mine_shaft_20x20"
             android:clickable="false"
             android:padding="10dp"
             android:elevation="3dp"

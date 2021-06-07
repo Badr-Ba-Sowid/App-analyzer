@@ -7,6 +7,7 @@
     android:elevation="3dp"
     android:background="@drawable/rectangle_mine_shaft"
     android:layout_marginTop="0.2dp"
+    android:foreground="?android:attr/selectableItemBackground"
     android:padding="5dp">
 
     <ImageView

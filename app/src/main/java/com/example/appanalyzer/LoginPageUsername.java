@@ -1,10 +1,12 @@
 package com.example.appanalyzer;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.dynamicanimation.animation.DynamicAnimation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,8 +32,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -39,8 +42,11 @@ public class LoginPageUsername extends AppCompatActivity {
     private ImageButton continueImageButton;
     private EditText emailEditText;
     private final int RC_SIGN_IN = 7;
+    private ImageView appLogo;
     GoogleSignInClient signInGoogle;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    RelativeLayout afterAnimationView;
+
 
 
     @Override
@@ -51,6 +57,32 @@ public class LoginPageUsername extends AppCompatActivity {
         GoogleSignUpButton = findViewById(R.id.google_signing_button_login_page_username);
         continueImageButton = findViewById(R.id.continue_image_button_login_page_username);
         emailEditText = findViewById(R.id.email_edit_text_login_page);
+        afterAnimationView = findViewById(R.id.afterAnimationView);
+        appLogo = findViewById(R.id.app_logo_image_view_login_page_username);
+
+        appLogo.animate().yBy(100f).setDuration(500).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                afterAnimationView.animate().alpha(1.0f).setDuration(500).start();
+                afterAnimationView.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -87,7 +119,7 @@ public class LoginPageUsername extends AppCompatActivity {
 
                 } else {
                     continueImageButton.setClickable(false);
-                    continueImageButton.setImageDrawable(getDrawable(R.drawable.ic_next_button_silver_20x20));
+                    continueImageButton.setImageDrawable(getDrawable(R.drawable.ic_next_button_mine_shaft_20x20));
 
                 }
             }

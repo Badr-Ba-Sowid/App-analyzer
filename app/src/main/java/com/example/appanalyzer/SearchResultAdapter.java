@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.appDescription.setText(appsList.get(position).getDescription());
 
         // set the rating
-        DecimalFormat df2 = new DecimalFormat("#.##");
+        DecimalFormat df2 = new DecimalFormat("#.#");
         holder.appRating.setText(String.valueOf(df2.format(appsList.get(position).getRating())));
 
 
@@ -94,6 +95,14 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         PlayStoreButton = itemView.findViewById(R.id.play_store_app_button);
         starRatings = itemView.findViewById(R.id.app_rating_stars);
 
+        layoutCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context , AppViewPage.class);
+                intent.putExtra("APP" , appsList.get(getAdapterPosition()));
+                context.startActivity(intent);
+            }
+        });
 
     }
 }

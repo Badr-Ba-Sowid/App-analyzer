@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/motion_layout_app_view_page"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layoutDescription="@xml/activity_app_view_page_scene">
+    <include
+        android:id="@+id/toolbar_app_view_page"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<ImageView
+    android:id="@+id/app_image"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:scaleType="fitXY"
+    android:layout_margin="10dp"
+    app:layout_constraintTop_toBottomOf="@id/toolbar_app_view_page"
+    app:layout_constraintStart_toStartOf="parent"
+    />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/install_Card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/downloads_text_view"
+        app:layout_constraintRight_toRightOf="parent"
+        app:cardCornerRadius="5dp"
+        android:layout_marginEnd="5dp">
+    <Button
+        android:id="@+id/install_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Install now"
+        android:shadowRadius="30"
+        android:shadowColor="@color/black"
+        android:minHeight="0dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:textAllCaps="false"
+        android:background="@drawable/install_background"
+        />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_title_place_holder"
+        android:text="Shroomies"
+        app:layout_constraintStart_toEndOf="@+id/app_image"
+        app:layout_constraintTop_toTopOf="@id/app_image"
+        android:textSize="14sp"
+        android:layout_marginStart="5dp"
+        android:maxWidth="250dp"
+        android:maxLines="2"
+
+        />
+    <ImageButton
+        android:id="@+id/app_options_app_view_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/app_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_options"
+        />
+
+    <TextView
+        android:id="@+id/play_store_rating_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Playstore rating"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/app_title_place_holder"
+        app:layout_constraintStart_toStartOf="@id/app_title_place_holder"
+        android:textSize="12sp"
+        />
+    <RatingBar
+        android:id="@+id/app_rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/play_store_rating_text_view"
+        app:layout_constraintTop_toTopOf="@id/play_store_rating_text_view"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_marginStart="5dp"
+        android:progressTint="@color/gold"
+        android:progressBackgroundTint="@color/gold"
+        android:secondaryProgressTint="@color/gold"
+        android:numStars="5"
+        android:stepSize="0.1"
+        />
+
+    <TextView
+        android:id="@+id/downloads_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Downloads"
+        app:layout_constraintTop_toBottomOf="@+id/play_store_rating_text_view"
+        app:layout_constraintStart_toStartOf="@id/play_store_rating_text_view"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:drawableStart="@drawable/ic_downloads"
+        android:drawablePadding="3dp"
+        />
+    <TextView
+        android:id="@+id/downloads_text_view_place_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/downloads_text_view"
+        app:layout_constraintTop_toTopOf="@id/downloads_text_view"
+        android:text="1000"
+        android:textSize="12sp"
+        android:layout_marginStart="5dp"
+        />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/app_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/downloads_text_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#242323"
+
+        />
+    <com.github.fajaragungpramana.dotsindicator.DotsIndicator
+        android:id="@+id/dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:dotColor="@android:color/darker_gray"
+        app:dotCount="5"
+        app:dotSelectedColor="@color/teal_200"
+        app:dotSize="5dp"
+        app:dotSpacing="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/app_view_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/round_rectangle_tundora"
+        android:alpha="0.8"
+        android:padding="3dp"
+        />
+
+
+        <LinearLayout
+            android:id="@+id/app_linear_layout_description"
+            app:layout_constraintTop_toBottomOf="@id/app_view_pager"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp"
+            android:layout_marginStart="5dp"
+            android:elevation="3dp"
+            />
+        <EditText
+            android:id="@+id/description_text_view_place_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="this is a text sample pf the app to see if the layopu is working and i think there odfbinbfahhgcvhhj b jbvk v bn ni;blvjh nblh jnibulh bn nbv gnnjn.bvg bn nkbhv bnnkbvh bnnjbhv bnnjhv szd;fbjdnkaefhudjv iudvhs ahuvb iubvhg bdnsjnlaidfhuv jnsbfhx d ihbfdvnd casmefnudvz cmmkdein irpeughbfv mkdmenfsv  hufv dmsaendjs  ihurebn kmrjbfne dmkqfnwjr wirlbh nfdmeijfnrbjd ihkevgdnsamejifbjdskm 'wrehdakojefiwnmv dcasfnd oeibdj mefjv damefjid f oipjrdfk vmskfoejinrjv dksam'ofingres;d  oipjfhgud msamefinwjdks amfeoinsdjb oijrhg mdakmefinbjkld csamdlefnsjdbl vdk msaofijnsbdkl m oewijrgnfjbdk kmsajoifsd kcmainrdj f ojrigntdjfk skmaefowibhjklsd maofkjingjr orjeginbfkmdfjnk fmdkme rignjkmojihubjnkmjihubjnmf kfrahipuhiehaue iuhbhnjihubnjkmojihunk ojihnmjinmjinjhugybnijhub ijhubjnkjhubjnkmlojhibnklmjohibjnjohibjnjohib nmoib jonibu ojihb nmojhibnojibknbjhv nmknibuj hnm lnoibuvh knibj nloib jnoib jnmoiboibj mnoib jnoibuv jlnobi jnbi jnoib jonib lnoib jnib jklnoib klmnoib jknoib jnib jknib jknibu jknibuj knibu hnibu jknoib jj ojhinohibj mjoibu jmoibu jmoibu jkonibcdamenf ihbadkmsfndsbh iefhrubhf dcanebsdf  jifhudb cdamncbdf n"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_thin"
+
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_rectangle_tundora_10dp"
+            android:padding="5dp"
+            android:cursorVisible="false"
+            android:inputType="none"
+            android:maxLines="10"
+            android:focusable="false"
+
+            />
+        </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/app_linear_layout_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/gradient_background_black"
+        android:paddingTop="40dp"
+        android:minHeight="300dp"
+
+        >
+
+        <TextView
+            android:id="@+id/information_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Information"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/linear_layout_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/information_text_view">
+
+        <LinearLayout
+            android:id="@+id/first_column"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:id="@+id/requires_android_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min Android"
+                android:textColor="@color/silver"
+                />
+
+            <TextView
+                android:id="@+id/requires_android_text_view_place_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/developers_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Developer"
+                android:textColor="@color/silver"
+                />
+
+            <TextView
+                android:id="@+id/developers_text_view_place_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/app_view_description_linear_layout_holder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            >
+            <TextView
+                android:id="@+id/size_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size"
+                android:textColor="@color/silver"
+                />
+
+            <TextView
+                android:id="@+id/size_text_view_place_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/content_rating_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Content rating"
+                android:textColor="@color/silver"
+                />
+
+            <TextView
+                android:id="@+id/content_rating_text_view_place_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                />
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:id="@+id/current_version_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current version"
+                    android:textColor="@color/silver"
+                    />
+
+                <TextView
+                    android:id="@+id/current_version_text_view_place_holder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/open_playstore_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_rectangle_tundora"
+            android:foreground="?android:attr/selectableItemBackground"
+           android:layout_below="@+id/linear_layout_information"
+            android:layout_marginTop="10dp"
+            android:text="Open in Playstore"
+            android:textSize="13sp"
+            android:drawableStart="@drawable/ic_play_store"
+            android:minHeight="0dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="false"
+            android:drawablePadding="20dp"/>
+
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/read_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_rectangle_tundora"
+        android:elevation="5dp"
+        android:minHeight="0dp"
+        app:layout_constraintStart_toStartOf="@id/info_layout"
+        app:layout_constraintEnd_toEndOf="@id/info_layout"
+        app:layout_constraintTop_toTopOf="@id/info_layout"
+
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="3dp"
+        android:text="Read more"
+        android:textAllCaps="false" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

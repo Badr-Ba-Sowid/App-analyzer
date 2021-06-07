@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.factor.bouncy.BouncyNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/main_tool_bar"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <GridLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:rowCount="4"
+            android:orientation="vertical"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true"
+            >
+
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+               android:orientation="vertical"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:background="@drawable/round_rectangle_gradient"
+                android:paddingTop="5dp"
+                android:elevation="10dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trending"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_group_42"
+                    android:drawablePadding="10dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+
+
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:maxHeight="200dp"
+                    android:padding="20dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="5dp"
+                    >
+                    <Button
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:text="Top charts"
+                        android:gravity="top|start"
+                        android:textAllCaps="false"
+                        android:padding="20dp"
+                        android:shadowColor="@color/mine_shaft"
+                        android:shadowRadius="50"
+                        android:textStyle="bold"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:background="@drawable/ic_sun_tornado"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="5dp"
+                android:padding="20dp">
+                <Button
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="New Releases"
+                    android:gravity="bottom|start"
+                    android:textAllCaps="false"
+                    android:padding="20dp"
+                    android:shadowColor="@color/mine_shaft"
+                    android:shadowRadius="50"
+                    android:textStyle="bold"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:background="@drawable/ic_flat_mountains"
+                    />
+
+            </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/round_rectangle_gradient"
+
+                android:layout_row="0"
+                android:layout_column="0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="10dp"
+                android:textSize="20sp"
+                android:text="Explore"
+                android:textStyle="bold"/>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="300dp"
+>
+                <androidx.cardview.widget.CardView
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="5dp"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_featured_apps"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="bottom|left"
+                    android:padding="20dp"
+                    android:shadowColor="@color/mine_shaft"
+                    android:shadowRadius="50"
+                    android:textStyle="bold"
+                    android:text="Featured Apps"
+                    android:textAllCaps="false"
+
+                     />
+                        </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                 android:layout_weight="1"
+                android:gravity="top"
+                android:textAllCaps="false"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="5dp"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="right|top"
+                    android:padding="20dp"
+                    android:text="Curated for you"
+                    android:textStyle="bold"
+                    android:background="@drawable/curated_for_you_background"
+                    android:shadowColor="@color/mine_shaft"
+                    android:shadowRadius="50"
+                    android:textAllCaps="false" />
+
+            </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/round_rectangle_gradient"
+                android:paddingTop="5dp"
+                android:elevation="10dp"
+                android:layout_row="2"
+                android:layout_column="0">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personalize your experience"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:drawablePadding="10dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="5dp"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="300dp"
+                    >
+                <androidx.cardview.widget.CardView
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp">
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="top|right"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:text="Looking for something more specific"
+                        android:background="@drawable/ic_confetti_doodles"
+                        android:shadowColor="@color/mine_shaft"
+                        android:shadowRadius="50"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:drawableEnd="@drawable/ic_next_button_white_20x20"/>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:gravity="right"
+                    android:layout_margin="5dp"
+                    android:padding="20dp"
+                    app:cardCornerRadius="20dp">
+
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="right|top"
+                        android:padding="20dp"
+                        android:text="Favourites"
+                        android:background="@drawable/ic_protruding_squares"
+                        android:textAllCaps="false"
+                        android:shadowColor="@color/mine_shaft"
+                        android:shadowRadius="50"
+                        android:textStyle="bold"
+
+                        />
+
+
+                </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+        </GridLayout>
+    </RelativeLayout>
+
+</com.factor.bouncy.BouncyNestedScrollView>

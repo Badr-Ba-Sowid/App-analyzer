@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppAnalyzer">
+
         <activity android:name=".SpecificSearch"></activity>
-        <activity android:name=".SearchResult" />
-        <activity android:name=".Search" />
+       <activity android:name=".AppViewPage"/>
+        <activity android:name=".ViewBlockedApps"/>
         <activity
             android:name=".LoginPageUsername"
             android:label="@string/title_activity_login_page_username"
@@ -22,10 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".SignUpUserName"
             android:parentActivityName=".LoginPageUsername" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="com.example.appanalyzer.ViewBlockedApps" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LoginPagePassword"
             android:parentActivityName=".LoginPageUsername" />

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.appcompat.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mine_shaft"
+        android:elevation="10dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageButton
+                android:id="@+id/logo_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_appify_logo_30x42" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/round_rectangle_tundora"
+                android:drawableStart="@drawable/ic_search_icon_grey_25x25"
+                android:drawablePadding="5dp"
+                android:focusedByDefault="true"
+                android:hint="@string/search"
+                android:maxHeight="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="Search..."
+
+                />
+
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+

@@ -1,0 +1,56 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="Apps" android:key="title"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        >
+
+        <Preference
+            android:title="View blocked apps"
+            app:iconSpaceReserved="false"
+            app:summary="Blocked apps are apps that will not be shown in recommendations">
+            <intent android:action="android.intent.action.VIEW"
+                android:targetClass="com.example.appanalyzer.ViewBlockedApps"
+                android:targetPackage="com.example.appanalyzer"
+                />
+
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Parental controls"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        android:key="PARENTAL_CONTROLS"
+        android:persistent="true"
+        >
+
+
+        <SwitchPreferenceCompat
+            app:key="PARENTAL_CONTROLS_SWITCH"
+            app:summaryOff="Recommendations will be targeted to kids"
+            android:summaryOn="Recommendations will be targeted to kids"
+            app:title="Turn parental control on"
+            app:iconSpaceReserved="false"
+
+
+            />
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Privacy" android:key="title"
+        app:allowDividerBelow="true"
+        app:allowDividerAbove="true"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:title="Privacy policy"
+            app:iconSpaceReserved="false"
+
+            >
+
+        </Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -38,7 +38,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.*;
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -65,22 +68,24 @@ public class Search extends Fragment {
     private RecyclerView recyclerView;
     private SearchResultAdapter searchAdapter;
     private List<AppModel> appsList;
+    private CustomProgressBar customProgressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         v = inflater.inflate(R.layout.fragment_search, container, false);
         return v;
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
 
         imageView = v.findViewById(R.id.app_icon_view);
         recyclerView = v.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
+        customProgressBar = new CustomProgressBar(getActivity() , "Searching..." , R.raw.loading);
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -89,12 +94,14 @@ public class Search extends Fragment {
         mRequestQueue = Volley.newRequestQueue(getActivity());
 
         //define an array for all the categories
-        String[] categoriesArray = {"Education", "Finance", "Business", "Music & Audio", "Health & Fitness", "Productivity", "Shopping", "Tools", "Food & Drink"};
+        String[] categoriesArray = {"All","Education", "Finance", "Business", "Music & Audio", "Health & Fitness", "Productivity", "Shopping", "Tools", "Food & Drink"};
         // create a radio button for each category
         for (String category
                 : categoriesArray) {
             RadioButton radioButton = new RadioButton(getActivity());
             radioButton.setBackground(getActivity().getDrawable(R.drawable.radio_button_round_grey));
+            radioButton.setMinimumWidth(20);
+
             radioButton.setElevation(3);
             radioButton.setText(category);
             radioButton.setButtonDrawable(null);
@@ -103,6 +110,9 @@ public class Search extends Fragment {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) radioButton.getLayoutParams();
             params.setMargins(5, 0, 5, 0);
             radioButton.setLayoutParams(params);
+            if (category.equals("All")){
+                radioButton.setChecked(true);
+            }
         }
 
         searchView = getActivity().findViewById(R.id.search_bar);
@@ -123,6 +133,8 @@ public class Search extends Fragment {
     }
 
     void sendRequest(final String query) {
+        customProgressBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        customProgressBar.show();
         appsList = new ArrayList<>();
         searchAdapter = new SearchResultAdapter(appsList, getActivity());
         recyclerView.setAdapter(searchAdapter);
@@ -151,18 +163,51 @@ public class Search extends Fragment {
                                     apps.setDescription(jsonObject.getString("summary"));
                                     apps.setRating(jsonObject.getDouble("score"));
                                     apps.setIconURL(jsonObject.getString("icon"));
+                                    apps.setAndroidVersion(jsonObject.getString("androidVersion"));
+                                    apps.setVideoImage(jsonObject.getString("videoImage"));
+                                    apps.setVideo(jsonObject.getString("video"));
+                                    apps.setContentRating(jsonObject.getString("contentRating"));
+                                    apps.setInstalls(jsonObject.getString("installs"));
+                                    apps.setDeveloper(jsonObject.getString("developer"));
+                                    apps.setVersion(jsonObject.getString("version"));
+                                    apps.setSize(jsonObject.getString("size"));
+                                    apps.setDescription(jsonObject.getString("description"));
+                                    apps.setUrl(jsonObject.getString("url"));
+                                    apps.setAppID(jsonObject.getString("App Id"));
 
-
+//                                    //TODO change this from cloud functions
+                                    String screenShotsString  = jsonObject.getString("screenShots");
+                                    String str[]  =screenShotsString.substring(1, screenShotsString.length() - 1).split(",") ;
+                                    List<String> screenShots = new ArrayList<>();
+                                    int count  = 0;
+                                    for(String x:
+                                    str){
+                                        if(x.length()>10){
+                                            if(count==0){
+                                                screenShots.add(x.substring(1, x.length() - 1));
+                                            }else{
+                                                screenShots.add(x.substring(2, x.length() - 1));
+                                            }
+                                        }
+                                        count++;
+                                    }
+                                    apps.setScreenShots(screenShots);
                                     appsList.add(apps);
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    customProgressBar.dismiss();
+
                                 }
+                                customProgressBar.dismiss();
                                 searchAdapter.notifyDataSetChanged();
 
                             }
 
                         }catch (JSONException e) {
                             e.printStackTrace();
+                            customProgressBar.dismiss();
+
                         }
                       //  Toast.makeText(getActivity() , Integer.toString(appsList.size()), Toast.LENGTH_LONG).show();
 
@@ -172,6 +217,8 @@ public class Search extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity() , error.toString() , Toast.LENGTH_SHORT).show();
+                customProgressBar.dismiss();
+
             }
 
         })

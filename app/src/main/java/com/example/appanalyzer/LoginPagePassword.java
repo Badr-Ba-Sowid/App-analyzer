@@ -18,9 +18,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,11 +30,14 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
+import de.mustafagercek.materialloadingbutton.LoadingButton;
+
 public class LoginPagePassword extends AppCompatActivity {
     private TextView userEmailTextView;
     private Toolbar toolbar;
     private TextInputEditText passwordEditText;
     private Button loginButton;
+    private LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +47,7 @@ public class LoginPagePassword extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_login_page_password);
         passwordEditText = findViewById(R.id.password_text_input_edit_text_login_page_password);
         loginButton = findViewById(R.id.login_button_login_page_password);
-
+        lottieAnimationView = findViewById(R.id.login_animation_view);
         // get the name from the intent and set
         // the text view with user's username
         String username = getIntent().getStringExtra("EMAIL");
@@ -92,6 +97,7 @@ public class LoginPagePassword extends AppCompatActivity {
     }
 
     private void loginUser() {
+        lottieAnimationView.setVisibility(View.VISIBLE);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         final String username = userEmailTextView.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -99,11 +105,13 @@ public class LoginPagePassword extends AppCompatActivity {
         auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                lottieAnimationView.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if (auth.getCurrentUser().isEmailVerified()) {
                         String userEmail = auth.getCurrentUser().getEmail();
                         Intent intent = new Intent(LoginPagePassword.this, MainActivity.class);
                         intent.putExtra("EMAIL", userEmail);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                     if (!(auth.getCurrentUser().isEmailVerified())) {
@@ -126,6 +134,7 @@ public class LoginPagePassword extends AppCompatActivity {
         }). addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                lottieAnimationView.setVisibility(View.GONE);
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     Toast.makeText(LoginPagePassword.this, "Invalid password", Toast.LENGTH_LONG).show();
                 } else if (e instanceof FirebaseAuthInvalidUserException) {

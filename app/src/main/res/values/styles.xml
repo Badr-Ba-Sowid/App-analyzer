@@ -5,4 +5,9 @@
         <item name="android:minHeight">20dip</item>
         <item name="android:maxHeight">20dip</item>
     </style>
+
+
+    <style name="PreferenceScreen" parent="Theme.AppCompat">
+        <item name="android:textColor">#ffffff</item>
+    </style>
 </resources>
